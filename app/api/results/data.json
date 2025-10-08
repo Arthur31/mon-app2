@@ -1,0 +1,63 @@
+{
+    "poll": [
+        {
+            "id": 1,
+            "question": "Do you like using our app?",
+            "options": [
+                "yes",
+                "no"
+            ],
+            "responses": [
+                {
+                    "user": "user1",
+                    "answer": "yes"
+                },
+                {
+                    "user": "user2",
+                    "answer": "no"
+                },
+                {
+                    "user": "user3",
+                    "answer": "yes"
+                },
+                {
+                    "user": "user4",
+                    "answer": "yes"
+                },
+                {
+                    "user": "user5",
+                    "answer": "no"
+                },
+                {
+                    "user": "user6",
+                    "answer": "yes"
+                },
+                {
+                    "user": "user7",
+                    "answer": "no"
+                },
+                {
+                    "user": "user8",
+                    "answer": "yes"
+                },
+                {
+                    "user": "user9",
+                    "answer": "no"
+                },
+                {
+                    "user": "user10",
+                    "answer": "yes"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "question": "Are you satisfied with our service ?",
+            "options": [
+                "yes",
+                "no"
+            ],
+            "responses": []
+        }
+    ]
+}
