@@ -60,7 +60,7 @@ export default async function ResultPage(props: {
     colorIndex++;
   })
 
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   // notFound();
   // throw new Error("Error in ResultPage");
   
