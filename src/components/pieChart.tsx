@@ -1,6 +1,6 @@
 'use client'
 
-import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
+import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent } from "@src/components/ui/chart";
 import { Pie, PieChart } from "recharts";
 
 export function PieChartComponent(props: { chartData: any[], chartConfig: ChartConfig }

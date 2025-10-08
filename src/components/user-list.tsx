@@ -1,4 +1,4 @@
-import { Card, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardTitle, CardContent } from "@src/components/ui/card";
 
 export default async function UserList(params: { userList: string[] }) {
     // const users = await fetch("https://jsonplaceholder.typicode.com/users")

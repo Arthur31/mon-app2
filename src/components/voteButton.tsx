@@ -8,12 +8,12 @@ export function VoteButton() {
   const sessionId = params.sessionId
 
   if (sessionId) {
-  return (
-    <Link href={`/vote/${sessionId}`} className="flex-none bg-red-50" >
-      <Button>Voter</Button>
-    </Link>
-  )
-} else {
-  return null
-}
+    return (
+      <Link href={`/vote/${sessionId}`} className="flex-none bg-red-50" >
+        <Button>Voter</Button>
+      </Link>
+    )
+  } else {
+    return null
+  }
 }

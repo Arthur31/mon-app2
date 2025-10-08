@@ -1,13 +1,12 @@
 
-import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
-import { notFound } from "next/navigation";
-import { PieChartComponent } from "@/src/components/pieChart";
+import { Card, CardContent, CardFooter, CardTitle } from "@src/components/ui/card";
+import { PieChartComponent } from "@src/components/pieChart";
 import Link from "next/link";
-import { Counter } from "@/src/components/counter";
-import UserList from "@/src/components/user-list";
-import { prisma } from "@/src/lib/prisma";
-import { ChartConfig } from "@/src/components/ui/chart";
-import { Button } from "@/src/components/ui/button";
+import { Counter } from "@src/components/counter";
+import UserList from "@src/components/user-list";
+import { prisma } from "@src/lib/prisma";
+import { ChartConfig } from "@src/components/ui/chart";
+import { Button } from "@src/components/ui/button";
 import { Suspense } from "react";
 
 // Extend ChartConfig to allow dynamic string keys
@@ -64,6 +63,7 @@ export default async function ResultPage(props: {
   await new Promise((resolve) => setTimeout(resolve, 500));
   // notFound();
   // throw new Error("Error in ResultPage");
+  
   return (
     <div className="flex flex-col gap-4">
       <Card className="p-4">

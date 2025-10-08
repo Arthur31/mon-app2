@@ -1,4 +1,4 @@
-import { prisma } from "@/src/lib/prisma";
+import { prisma } from "@src/lib/prisma";
 import { redirect, RedirectType } from "next/navigation";
 
 export async function voteAction(formData: FormData) {
