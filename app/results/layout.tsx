@@ -1,23 +1,20 @@
 import { Button } from "@/src/components/ui/button";
 import { Card, CardTitle } from "@/src/components/ui/card";
+import { VoteButton } from "@/src/components/voteButton";
 import Link from "next/link";
 
-export default function ResultsLayout(
-    props: { children: React.ReactNode }
-) {
+export default function ResultsLayout({ children }: { children: React.ReactNode}) {
+
   return (
-    // <div className="p-4 border-2 border-blue-500">
     <div className="flex flex-col gap-4 p-4 max-w-md mx-auto min-h-full border-2 border-x">
         <Card className="p-4 py-0">
             <CardTitle className="flex flex-row p-0 items-center" >
-              <Link href={"/results"} className="flex-none">🏠</Link> 
-              <p className="inline p-4 w-max flex-auto" >Results</p>
-              <Link href={"/vote"} className="flex-none bg-red-50" >
-                <Button>Voter</Button>
-              </Link>
+              <Link href={"/"} className="flex-none">🏠</Link>
+              <p className="inline py-4 w-max flex-auto" > • <Link href={"/results"}>Results</Link></p>
+              <VoteButton></VoteButton>
             </CardTitle>
         </Card>
-        {props.children}
+        {children}
     </div>
   );
 }

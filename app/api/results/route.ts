@@ -1,5 +1,5 @@
 import { prisma } from '@/src/lib/prisma';
-import data from './data.json' 
+import data from '@/src/data/data.json' 
 
 // export async function GET() {
 //   return Response.json(data);

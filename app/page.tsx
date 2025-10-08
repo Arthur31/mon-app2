@@ -1,4 +1,6 @@
+import { Button } from "@/src/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -49,6 +51,10 @@ export default function Home() {
           >
             Read our docs
           </a>
+        </div>
+        <div className="flex flex-row gap-4 items-center text-center max-w-[700px]">
+        <Button className="flex flex-1"><Link href={"/vote"}>Vote</Link></Button>
+        <Button className="flex flex-1"><Link href={"/results"}>Results</Link></Button>
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
