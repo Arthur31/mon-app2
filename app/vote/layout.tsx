@@ -1,5 +1,5 @@
-import { Button } from "@/src/components/ui/button";
-import { Card, CardTitle } from "@/src/components/ui/card";
+import { Button } from "@src/components/ui/button";
+import { Card, CardTitle } from "@src/components/ui/card";
 import Link from "next/link";
 
 export default function ResultsLayout(

@@ -1,5 +1,5 @@
-import { Card, CardTitle } from "@/src/components/ui/card";
-import { prisma } from "@/src/lib/prisma";
+import { Card, CardTitle } from "@src/components/ui/card";
+import { prisma } from "@src/lib/prisma";
 import Link from "next/link";
 
 export default async function ResultsListPage() {

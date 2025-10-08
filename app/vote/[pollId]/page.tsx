@@ -1,7 +1,7 @@
-import { Card, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/src/components/ui/button";
-import { prisma } from "@/src/lib/prisma";
-import { voteAction } from "@/src/actions/voteAction";
+import { Card, CardTitle, CardContent } from "@src/components/ui/card";
+import { Button } from "@src/components/ui/button";
+import { prisma } from "@src/lib/prisma";
+import { voteAction } from "@src/actions/voteAction";
 
 
 export default async function Page(props: {
