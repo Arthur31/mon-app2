@@ -33,12 +33,12 @@ export default function RootLayout({
           "antialiased",
           "h-full"
         )
-        // className={
-        //   `${geistSans.variable}
-        //  ${geistMono.variable} antialiased h-full gap-4 p-4 max-w-md mx-auto min-h-full border-2 border-x`
+          // className={
+          //   `${geistSans.variable}
+          //  ${geistMono.variable} antialiased h-full gap-4 p-4 max-w-md mx-auto min-h-full border-2 border-x`
         }
       >
-        <Header/>
+        <Header />
         {children}
       </body>
     </html>

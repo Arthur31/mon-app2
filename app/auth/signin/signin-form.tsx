@@ -21,7 +21,7 @@ const SignInFormSchema = z.object({
   email: z.email(),
   password: z.string().min(6, "Password must be at least 6 characters long"),
 })
- 
+
 export function SignInForm() {
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignInFormSchema>>({
@@ -33,7 +33,7 @@ export function SignInForm() {
   })
 
   const router = useRouter();
- 
+
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignInFormSchema>) {
     // Do something with the form values.
@@ -41,17 +41,17 @@ export function SignInForm() {
     console.log(values)
 
     await signIn.email({
-        email: values.email,
-        password: values.password,
+      email: values.email,
+      password: values.password,
     }, {
-        onSuccess: () => {
-            router.push("/auth");
-            router.refresh();
-        },
-        onError: () => {
-            console.log("Error signing up");
-            
-        }
+      onSuccess: () => {
+        router.push("/auth");
+        router.refresh();
+      },
+      onError: () => {
+        console.log("Error signing up");
+
+      }
     })
   }
 
@@ -87,5 +87,5 @@ export function SignInForm() {
         <Button type="submit" className="w-full">Submit</Button>
       </form>
     </Form>
-  ) 
+  )
 }

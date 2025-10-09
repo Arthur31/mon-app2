@@ -8,7 +8,7 @@ export function VoteButton() {
   const params = useParams()
   const sessionId = params.sessionId
 
-  const { data } = authClient.useSession() 
+  const { data } = authClient.useSession()
   if (data?.user == null) {
     return null
   }

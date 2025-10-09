@@ -12,7 +12,7 @@ export default function SignUpPage() {
         </CardContent>
         <CardFooter>
             <p className="text-sm text-muted-foreground">
-                Already have an account? 
+                Already have an account?
                 <Link href="/auth/signin" className="text-primary hover:underline"> Sign in</Link></p>
         </CardFooter>
     </Card>

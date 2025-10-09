@@ -8,11 +8,11 @@ export default function SignUpPage() {
             <CardTitle>Sign In</CardTitle>
         </CardHeader>
         <CardContent>
-            <SignInForm/>
+            <SignInForm />
         </CardContent>
         <CardFooter>
             <p className="text-sm text-muted-foreground">
-                Don't have an account? 
+                Don't have an account?
                 <Link href="/auth/signup" className="text-primary hover:underline"> Sign up</Link></p>
         </CardFooter>
     </Card>

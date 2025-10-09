@@ -36,7 +36,7 @@ export default async function ResultPage(props: {
     }
     return acc;
   }, []);
-  
+
   const answerCounts = response.reduce<Record<string, number>>((acc, curr) => {
     acc[curr.answer] = (acc[curr.answer] || 0) + 1;
     return acc;
@@ -52,7 +52,7 @@ export default async function ResultPage(props: {
   var colorIndex = 1;
   Object.entries(answerCounts).map(([answer, count]) => {
     chartData.push({ answer: answer, count: count, fill: `var(--chart-${colorIndex})` })
-    
+
     chartConfig[answer] = {
       label: answer,
       color: `var(--chart-${colorIndex})`,
@@ -63,7 +63,7 @@ export default async function ResultPage(props: {
   await new Promise((resolve) => setTimeout(resolve, 2000));
   // notFound();
   // throw new Error("Error in ResultPage");
-  
+
   return (
     <div className="flex flex-col gap-4">
       <Card className="p-4">
@@ -77,7 +77,7 @@ export default async function ResultPage(props: {
         </CardFooter>
       </Card>
       <Suspense fallback={<Card className="p-4"><CardContent>Loading users...</CardContent></Card>}>
-        <UserList userList={userList}/>
+        <UserList userList={userList} />
       </Suspense>
     </div>
   );
