@@ -6,9 +6,6 @@ import { Button } from "@/src/components/ui/button";
 export default async function RecettesPage() {
     const recettes = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=a")
         .then(res => res.json());
-
-    console.log(recettes.meals);
-
     return (
         <div>
             <h1 className="text-2xl font-bold p-4">Mon super site de Recettes</h1>
