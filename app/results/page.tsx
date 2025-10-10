@@ -5,20 +5,28 @@ import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from
 
 export default async function ResultsListPage() {
 
-  // A ne pas faire
+  // A ne pas faire ❌
   // const polls = await fetch('http://localhost:3000/api/results')
   //   .then(res => res.json());
   //   console.log(polls);
 
-  // A faire
-  const polls = await prisma.poll.findMany();
+  // A faire ✅
+  const polls = await prisma.poll.findMany({
+    include: {
+      responses: true
+    }
+  });
 
   return (
     <>
-      {polls.map((poll: { id: Key | null | undefined; question: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; }) => (
+      {polls.map((poll) => (
         <Link key={poll.id} href={`/results/${poll.id}`}>
           <Card key={poll.id} className="p-4">
-            <CardTitle>{poll.question}</CardTitle>
+            <CardTitle className="flex flex-row">
+              {poll.question}
+              <div className="flex-1"></div>
+              {poll.responses.length}
+            </CardTitle>
           </Card>
         </Link>
       ))}

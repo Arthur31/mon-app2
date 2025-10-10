@@ -15,6 +15,8 @@ import {
 import { Input } from "@src/components/ui/input"
 import { signUp } from "@src/lib/auth-client"
 import { useRouter } from "next/navigation"
+import { toast } from "sonner"
+import { SubmitButton } from "@/src/components/submitButton"
 
 
 const SignUpFormSchema = z.object({
@@ -50,9 +52,8 @@ export function SignUpForm() {
         router.push("/auth");
         router.refresh();
       },
-      onError: () => {
-        console.log("Error signing up");
-
+      onError: (e) => {
+        toast(e.error.message)
       }
     })
   }
@@ -99,7 +100,8 @@ export function SignUpForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">Submit</Button>
+        <SubmitButton label="Register" />
+        {/* <Button type="submit" className="w-full">Submit</Button> */}
       </form>
     </Form>
   )

@@ -269,6 +269,9 @@ function ChartLegendContent({
     return null
   }
 
+  console.log(payload);
+
+
   return (
     <div
       className={cn(

@@ -15,7 +15,7 @@ export function VoteButton() {
 
   if (sessionId) {
     return (
-      <Link href={`/vote/${sessionId}`} className="flex-none bg-red-50" >
+      <Link href={`/poll/${sessionId}`} className="flex-none bg-red-50" >
         <Button>Voter</Button>
       </Link>
     )

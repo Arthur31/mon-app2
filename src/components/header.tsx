@@ -6,7 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Suspense } from "react";
 import { Skeleton } from "./ui/skeleton";
-import { LogOut, User2 } from "lucide-react";
+import { LogOut, Plus, User2 } from "lucide-react";
 import { auth } from "../lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -42,6 +42,12 @@ export const AuthButton = async () => {
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
+            <DropdownMenuItem asChild>
+                <Link href="/poll/create" className="flex items-center gap-2">
+                    <Plus size={16} />
+                    Create a poll
+                </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem asChild>
                 <Link href="/auth" className="flex items-center gap-2">
                     <User2 className="size-3" />

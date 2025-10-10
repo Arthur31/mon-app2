@@ -1,13 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { getUser } from "@src/lib/auth-server";
+import { Check } from "lucide-react";
 import { unauthorized } from "next/navigation";
 
 export default async function AuthPage() {
     const user = await getUser();
 
     if (!user) {
-        return <div className="text-center">You are not logged in. Please log in to view your profile.</div>
-        // return unauthorized();
+        return unauthorized();
     }
     return (
         <Card>
@@ -21,7 +21,10 @@ export default async function AuthPage() {
                         <span>{user?.name}</span>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-sm text-muted-foreground">Email</span>
+                        <div className="flex items-center gap-3">
+                            <span className="text-sm text-muted-foreground">Email</span>
+                            {user.emailVerified ? <Check size={10} /> : null}
+                        </div>
                         <span>{user?.email}</span>
                     </div>
                 </div>

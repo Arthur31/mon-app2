@@ -15,12 +15,17 @@ import {
 import { Input } from "@src/components/ui/input"
 import { signIn } from "@src/lib/auth-client"
 import { useRouter } from "next/navigation"
+import { Github } from "lucide-react"
+import { toast } from "sonner"
+import { SubmitButton } from "@/src/components/submitButton"
 
 
 const SignInFormSchema = z.object({
   email: z.email(),
   password: z.string().min(6, "Password must be at least 6 characters long"),
 })
+
+type SocialProvider = keyof typeof signIn.social;
 
 export function SignInForm() {
   // 1. Define your form.
@@ -38,7 +43,6 @@ export function SignInForm() {
   async function onSubmit(values: z.infer<typeof SignInFormSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
 
     await signIn.email({
       email: values.email,
@@ -48,44 +52,67 @@ export function SignInForm() {
         router.push("/auth");
         router.refresh();
       },
-      onError: () => {
-        console.log("Error signing up");
+      onError: (e) => {
+        toast(e.error.message)
+      }
+    })
+  }
 
+  async function signInWithProvider(provider: string) {
+    signIn.social({
+      provider: provider,
+      callbackURL: "/auth",
+    }, {
+      onError: (e) => {
+        toast(e.error.message)
       }
     })
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="" type="email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input placeholder="" type="password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" className="w-full">Submit</Button>
-      </form>
-    </Form>
+    <div className="flex flex-col items-center gap-8">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-6 w-full">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="" type="email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input placeholder="" type="password" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <SubmitButton label="LogIn" />
+        </form>
+        <p className="text-sm text-muted-foreground">OR</p>
+        <div className="flex w-full gap-4">
+          <Button
+            onClick={() => signInWithProvider("github")}
+            className="flex-1" variant="outline">
+            <Github className="mr-2" />
+            Sign in with Github
+          </Button>
+        </div>
+      </Form>
+    </div>
   )
 }

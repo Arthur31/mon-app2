@@ -1,8 +1,10 @@
 import { Button } from "@src/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+  redirect("/results");
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -53,7 +55,7 @@ export default function Home() {
           </a>
         </div>
         <div className="flex flex-row gap-4 items-center text-center max-w-[700px]">
-          <Button className="flex flex-1"><Link href={"/vote"}>Vote</Link></Button>
+          <Button className="flex flex-1"><Link href={"/poll"}>Vote</Link></Button>
           <Button className="flex flex-1"><Link href={"/results"}>Results</Link></Button>
         </div>
       </main>

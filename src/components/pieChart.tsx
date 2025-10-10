@@ -1,6 +1,6 @@
 'use client'
 
-import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent } from "@src/components/ui/chart";
+import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "@src/components/ui/chart";
 import { Pie, PieChart } from "recharts";
 
 export function PieChartComponent(props: { chartData: any[], chartConfig: ChartConfig }
@@ -11,10 +11,18 @@ export function PieChartComponent(props: { chartData: any[], chartConfig: ChartC
             className="mx-auto aspect-square max-h-[300px]"
         >
             <PieChart>
+                <ChartTooltip
+                    cursor={false}
+                    content={
+                        <ChartTooltipContent
+                            hideLabel
+                            nameKey="answer" />
+                    }
+                />
                 <Pie data={props.chartData} dataKey="count" />
                 <ChartLegend
                     content={<ChartLegendContent nameKey="answer" />}
-                    className="-translate-y-2 flex-wrap gap-2 *:basis-1/4 *:justify-center"
+                    className="flex-col gap-2 justify-start items-start"
                 />
             </PieChart>
         </ChartContainer>

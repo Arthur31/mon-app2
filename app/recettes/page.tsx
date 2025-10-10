@@ -22,7 +22,9 @@ export default async function RecettesPage() {
 
 async function RecetteCard(params: { recette: Recette }) {
     const delay = Math.floor(Math.random() * 2000) + 1000; // random between 1000ms and 3000ms
-    await new Promise((resolve) => setTimeout(resolve, delay));
+    if (process.env.DELAY === "true") {
+        await new Promise((resolve) => setTimeout(resolve, delay));
+    }
     return (
         <Card className="w-full max-w-md overflow-hidden ml-4">
             <div className="relative h-48">

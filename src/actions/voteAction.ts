@@ -24,14 +24,26 @@ export async function voteAction(formData: FormData) {
     }
 
     if (vote != null) {
-        const create = await prisma.response.create({
-            data: {
-                user: session.user.name,
-                answer: vote,
+        const previousVote = await prisma.response.findFirst({
+            where: {
+                userId: session.user.id,
                 pollId: pollId
             }
         });
-        console.log(create);
+        if (previousVote) {
+            await prisma.response.update({
+                where: { id: previousVote.id },
+                data: { answer: vote }
+            });
+        } else {
+            await prisma.response.create({
+                data: {
+                    userId: session.user.id,
+                    answer: vote,
+                    pollId: pollId
+                }
+            });
+        }
     }
 
     redirect(`/results/${pollId}`, RedirectType.push);
