@@ -33,10 +33,11 @@ export default function RootLayout({
           geistMono.variable,
           "antialiased",
           "h-full"
-        )
-        }
+        )}
       >
-        <Header />
+        <div className="px-4 py-2 max-w-md mx-auto border-x-2">
+          <Header />
+        </div>
         <Toaster />
         <div className="flex flex-col gap-4 p-4 max-w-md mx-auto min-h-full border-2 border-x">
           {children}

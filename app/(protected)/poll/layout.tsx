@@ -1,22 +1,11 @@
 import { Button } from "@/src/components/ui/button";
-import { auth } from "@/src/lib/auth";
 import { Card, CardTitle } from "@src/components/ui/card";
 import { Plus } from "lucide-react";
-import { headers } from "next/headers";
 import Link from "next/link";
-import { redirect, unauthorized } from "next/navigation";
 
 export default async function ResultsLayout(
   props: { children: React.ReactNode }
 ) {
-
-  const session = await auth.api.getSession({
-    headers: await headers()
-  })
-  if (!session) {
-    // redirect("/")
-    unauthorized()
-  }
 
   return (
     <>
