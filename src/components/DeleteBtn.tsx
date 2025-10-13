@@ -1,6 +1,4 @@
 "use client"
-
-import { deletePollAction } from "@/src/actions/deletePollAction";
 import {
     AlertDialogHeader,
     AlertDialogFooter,
@@ -11,12 +9,14 @@ import {
     AlertDialogDescription,
     AlertDialogCancel,
     AlertDialogAction
-} from "../ui/alert-dialog";
-import { Button } from "../ui/button";
+} from "./ui/alert-dialog";
+import { Button } from "./ui/button";
 import { Trash2 } from "lucide-react";
+import { MouseEventHandler } from "react";
 
 type DeleteBtnProps = {
-    deleteId: string
+    warningLabel: string,
+    deleteAction: MouseEventHandler<HTMLButtonElement>
 }
 
 export function DeleteBtn(
@@ -34,13 +34,13 @@ export function DeleteBtn(
                 <AlertDialogHeader>
                     <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action cannot be undone. <br />This will permanently delete this poll.
+                        This action cannot be undone. <br />{props.warningLabel}
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
                     <AlertDialogAction
-                        onClick={async () => { await deletePollAction(props.deleteId) }}
+                        onClick={props.deleteAction }
                         className="bg-destructive text-white hover:bg-destructive/90">
                         Delete
                     </AlertDialogAction>

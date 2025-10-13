@@ -13,11 +13,12 @@ import {
   FormMessage,
 } from "@src/components/ui/form"
 import { Input } from "@src/components/ui/input"
-import { signIn } from "@src/lib/auth-client"
+import { authClient, signIn } from "@src/lib/auth-client"
 import { useRouter } from "next/navigation"
 import { Github } from "lucide-react"
 import { toast } from "sonner"
 import { SubmitButton } from "@/src/components/submitButton"
+import { useEffect } from "react"
 
 
 const SignInFormSchema = z.object({
@@ -69,40 +70,65 @@ export function SignInForm() {
     })
   }
 
+  function handlePasskey() {
+    authClient.signIn.passkey({ autoFill: false })
+      .then((data) => {
+        console.log(data);
+        if (data?.error) {
+          toast(data?.error.message)
+          console.log(data?.error);
+        } else {
+          router.push("/");
+          router.refresh()
+        }
+      })
+  }
+
+  // useEffect(() => {
+  //   if (!PublicKeyCredential.isConditionalMediationAvailable ||
+  //     !PublicKeyCredential.isConditionalMediationAvailable()) {
+  //     return;
+  //   }
+  //   handlePasskey()
+  // }, [])
+
   return (
     <div className="flex flex-col items-center gap-8">
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-6 w-full">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="" type="email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input placeholder="" type="password" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <SubmitButton label="LogIn" />
-        </form>
+        <div className="flex flex-col gap-0 w-full">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-6 w-full">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="" type="email" {...field} autoComplete="email webauthn" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="" type="password" {...field} autoComplete="current-password webauthn" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <SubmitButton label="LogIn" />
+          </form>
+          <Button variant={"link"} onClick={handlePasskey}>Sign In with Passkey</Button>
+        </div>
         <p className="text-sm text-muted-foreground">OR</p>
         <div className="flex w-full gap-4">
           <Button

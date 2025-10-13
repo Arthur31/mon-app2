@@ -1,3 +1,4 @@
+"use client"
 import { SubmitButton } from "@/src/components/submitButton";
 import { Card, CardTitle, CardContent } from "@/src/components/ui/card";
 import { Input } from "@/src/components/ui/input";
@@ -5,7 +6,8 @@ import PollOptionsInput from "./poll-options-input";
 import { Poll } from "@/src/generated/prisma";
 import { Link, Plus, Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
-import { DeleteBtn } from "./DeleteBtn";
+import { DeleteBtn } from "../DeleteBtn";
+import { deletePollAction } from "@/src/actions/deletePollAction";
 
 type PollFormProps = {
     action: ((formData: FormData) => void | Promise<void>)
@@ -20,7 +22,7 @@ export default function PollForm(
             <CardTitle className="flex items-center w-full">
                 <p>{props.title}</p>
                 <div className="flex-1"></div>
-                {props.poll && <DeleteBtn deleteId={props.poll?.id} />}
+                {props.poll && <DeleteBtn warningLabel="This will permanently delete this poll." deleteAction={async () => await deletePollAction(props.poll!.id)}/>}
             </CardTitle>
             <CardContent >
                 <form action={props.action} className="flex flex-col gap-4">
